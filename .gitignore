@@ -1,0 +1,14 @@
+# Dados volumosos (que sincronizarás por rsync ou outro)
+dados_imagens/
+dados_obj/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Configurações locais
+.env
+
+# Logs e outputs
+*.log
+output/

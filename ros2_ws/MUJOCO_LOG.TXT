@@ -1,0 +1,130 @@
+Mon May 12 15:06:36 2025
+ERROR: Load model error: XML Error: Schema violation: unrecognized attribute: 'qpos0'
+Element 'joint', line 161
+
+
+Mon May 12 15:31:08 2025
+ERROR: Load model error: XML Error: attribute 'pos' does not have enough data
+Element 'joint', line 120
+
+
+Mon May 12 16:49:42 2025
+ERROR: Load model error: XML Error: Schema violation: unrecognized attribute: 'key'
+Element 'option', line 3
+
+
+Mon May 12 16:50:03 2025
+ERROR: Load model error: XML Error: Schema violation: unrecognized attribute: 'key'
+Element 'option', line 3
+
+
+Mon May 19 11:46:00 2025
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 0. The simulation is unstable. Time = 0.0000.
+
+Mon May 19 11:49:08 2025
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 0. The simulation is unstable. Time = 0.0000.
+
+Mon May 19 11:52:16 2025
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 0. The simulation is unstable. Time = 0.0000.
+
+Mon May 19 11:54:20 2025
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 0. The simulation is unstable. Time = 0.0000.
+
+Mon May 19 11:55:21 2025
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 0. The simulation is unstable. Time = 0.0000.
+
+Mon May 19 11:55:57 2025
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 0. The simulation is unstable. Time = 0.0000.
+
+Mon May 19 13:50:19 2025
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 0. The simulation is unstable. Time = 0.0000.
+
+Mon May 19 13:53:24 2025
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 0. The simulation is unstable. Time = 0.0000.
+
+Mon May 19 13:55:45 2025
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 0. The simulation is unstable. Time = 0.0000.
+
+Mon May 19 13:56:29 2025
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 0. The simulation is unstable. Time = 0.0000.
+
+Mon May 19 14:00:56 2025
+WARNING: Nan, Inf or huge value in CTRL at ACTUATOR 0. The simulation is unstable. Time = 0.0000.
+
+Fri Jun 20 01:02:48 2025
+ERROR: Load model error: Error: joint has `range` but not `limited`. set the autolimits="true" compiler option, specify `limited` explicitly ("true" or "false"), or remove the `range` attribute.
+Object name = shoulder_pan_joint, id = 0, line = 133, column = -1
+
+Fri Jun 20 01:03:25 2025
+ERROR: Load model error: Error: joint has `range` but not `limited`. set the autolimits="true" compiler option, specify `limited` explicitly ("true" or "false"), or remove the `range` attribute.
+Object name = shoulder_pan_joint, id = 0, line = 133, column = -1
+
+Fri Jun 20 01:04:53 2025
+ERROR: Load model error: Error: joint has `range` but not `limited`. set the autolimits="true" compiler option, specify `limited` explicitly ("true" or "false"), or remove the `range` attribute.
+Object name = shoulder_pan_joint, id = 0, line = 133, column = -1
+
+Tue Jun 24 16:01:50 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 18.4700.
+
+Tue Jun 24 16:03:08 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 40.0720.
+
+Tue Jun 24 16:06:52 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 30.8200.
+
+Tue Jun 24 16:07:48 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 8.9320.
+
+Tue Jun 24 16:09:44 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 1. The simulation is unstable. Time = 12.0600.
+
+Tue Jun 24 16:11:58 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 86.0720.
+
+Tue Jun 24 16:15:42 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 1. The simulation is unstable. Time = 19.9640.
+
+Wed Jun 25 17:44:57 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 31.1800.
+
+Wed Jun 25 17:46:06 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 1. The simulation is unstable. Time = 18.5080.
+
+Wed Jun 25 17:51:38 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 72.6700.
+
+Wed Jun 25 17:54:45 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 24.4300.
+
+Thu Jun 26 17:30:41 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 23.0800.
+
+Thu Jun 26 17:32:39 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 23.8540.
+
+Thu Jun 26 17:53:25 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 3. The simulation is unstable. Time = 27.7020.
+
+Thu Jun 26 18:01:08 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 14.3500.
+
+Thu Jun 26 18:02:10 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 3.8920.
+
+Thu Jun 26 18:05:27 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 3.8940.
+
+Fri Jun 27 22:14:14 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 2. The simulation is unstable. Time = 0.0040.
+
+Fri Jun 27 22:14:16 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 0.0040.
+
+Sat Jun 28 20:29:10 2025
+ERROR: Load model error: XML Error: Schema violation: unrecognized attribute: 'name'
+Element 'joint', line 11
+
+
+Wed Jul  2 15:05:47 2025
+WARNING: Nan, Inf or huge value in QACC at DOF 7. The simulation is unstable. Time = 19.5720.
+

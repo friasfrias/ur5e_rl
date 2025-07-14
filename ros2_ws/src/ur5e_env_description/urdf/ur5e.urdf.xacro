@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="$(arg name)">
+
+  <!-- === args === -->
+  <xacro:arg name="name"             default="ur5e"/>
+  <xacro:arg name="ur_type"         default="ur5e"/>
+  <xacro:arg name="tf_prefix"       default=""/>
+  <xacro:arg name="force_abs_paths" default="false"/>
+  <xacro:arg name="with_ros2_control" default="false"/>
+
+  <!-- só incluo o macro cinemático do UR, sem includes de ros2_control -->
+  <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+
+  <!-- link world para fixar a base -->
+  <link name="world"/>
+
+  <!-- gera toda a cinemática via o macro do UR -->
+  <xacro:ur_robot
+     name="$(arg name)"
+     tf_prefix="$(arg tf_prefix)"
+     parent="world"
+     joint_limits_parameters_file="$(find ur_description)/config/$(arg ur_type)/joint_limits.yaml"
+     kinematics_parameters_file="$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml"
+     physical_parameters_file="$(find ur_description)/config/$(arg ur_type)/physical_parameters.yaml"
+     visual_parameters_file="$(find ur_description)/config/$(arg ur_type)/visual_parameters.yaml"
+     safety_limits="false"
+     safety_pos_margin="0.15"
+     safety_k_position="20"
+  >
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:ur_robot>
+
+  <!-- só se with_ros2_control for true, injeta o ros2_control do MuJoCo -->
+  <xacro:if value="$(arg with_ros2_control)">
+    <ros2_control name="ur_hardware" type="system">
+      <hardware>
+        <plugin>mujoco_ros2_control/MujocoSystem</plugin> 
+      </hardware>
+      <joint name="shoulder_pan_joint">
+        <command_interface name="position"/>
+        <command_interface name="velocity"/> 
+        <state_interface   name="position"/>
+        <state_interface   name="velocity"/>
+      </joint>
+      <joint name="shoulder_lift_joint">
+        <command_interface name="position"/>
+        <command_interface name="velocity"/> 
+        <state_interface   name="position"/>
+        <state_interface   name="velocity"/>
+      </joint>
+      <joint name="elbow_joint">
+        <command_interface name="position"/>
+        <command_interface name="velocity"/> 
+        <state_interface   name="position"/>
+        <state_interface   name="velocity"/>
+      </joint>
+      <joint name="wrist_1_joint">
+        <command_interface name="position"/>
+        <command_interface name="velocity"/> 
+        <state_interface   name="position"/>
+        <state_interface   name="velocity"/>
+      </joint>
+      <joint name="wrist_2_joint">
+        <command_interface name="position"/>
+        <command_interface name="velocity"/> 
+        <state_interface   name="position"/>
+        <state_interface   name="velocity"/>
+      </joint>
+      <joint name="wrist_3_joint">
+        <command_interface name="position"/>
+        <command_interface name="velocity"/> 
+        <state_interface   name="position"/>
+        <state_interface   name="velocity"/>
+      </joint>
+    </ros2_control>
+  </xacro:if>
+</robot>

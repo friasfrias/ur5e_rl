@@ -1,0 +1,21 @@
+{
+  "package_name": "builtin_interfaces",
+  "output_dir": "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/builtin_interfaces/rosidl_typesupport_introspection_c/builtin_interfaces",
+  "template_dir": "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/rosidl_typesupport_introspection_c/resource",
+  "idl_tuples": [
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/builtin_interfaces/rosidl_adapter/builtin_interfaces:msg/Duration.idl",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/builtin_interfaces/rosidl_adapter/builtin_interfaces:msg/Time.idl"
+  ],
+  "target_dependencies": [
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/lib/rosidl_typesupport_introspection_c/rosidl_typesupport_introspection_c",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/lib/python3.9/site-packages/rosidl_typesupport_introspection_c/__init__.py",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/rosidl_typesupport_introspection_c/resource/idl__rosidl_typesupport_introspection_c.h.em",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/rosidl_typesupport_introspection_c/resource/idl__type_support.c.em",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/rosidl_typesupport_introspection_c/resource/msg__rosidl_typesupport_introspection_c.h.em",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/rosidl_typesupport_introspection_c/resource/msg__type_support.c.em",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/rosidl_typesupport_introspection_c/resource/srv__rosidl_typesupport_introspection_c.h.em",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/rosidl_typesupport_introspection_c/resource/srv__type_support.c.em",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/builtin_interfaces/rosidl_adapter/builtin_interfaces/msg/Duration.idl",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/builtin_interfaces/rosidl_adapter/builtin_interfaces/msg/Time.idl"
+  ]
+}

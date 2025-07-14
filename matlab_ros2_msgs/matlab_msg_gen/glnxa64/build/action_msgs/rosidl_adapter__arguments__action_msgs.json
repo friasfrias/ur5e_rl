@@ -1,0 +1,9 @@
+{
+  "package_name": "action_msgs",
+  "non_idl_tuples": [
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/src/action_msgs:msg/GoalInfo.msg",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/src/action_msgs:msg/GoalStatus.msg",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/src/action_msgs:msg/GoalStatusArray.msg",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/src/action_msgs:srv/CancelGoal.srv"
+  ]
+}

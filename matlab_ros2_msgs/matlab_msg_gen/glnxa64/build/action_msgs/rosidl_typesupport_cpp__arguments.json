@@ -1,0 +1,31 @@
+{
+  "package_name": "action_msgs",
+  "output_dir": "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/action_msgs/rosidl_typesupport_cpp/action_msgs",
+  "template_dir": "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/rosidl_typesupport_cpp/resource",
+  "idl_tuples": [
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/action_msgs/rosidl_adapter/action_msgs:msg/GoalInfo.idl",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/action_msgs/rosidl_adapter/action_msgs:msg/GoalStatus.idl",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/action_msgs/rosidl_adapter/action_msgs:msg/GoalStatusArray.idl",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/action_msgs/rosidl_adapter/action_msgs:srv/CancelGoal.idl"
+  ],
+  "ros_interface_dependencies": [
+    "builtin_interfaces:/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/install/share/builtin_interfaces/msg/Duration.idl",
+    "builtin_interfaces:/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/install/share/builtin_interfaces/msg/Time.idl",
+    "unique_identifier_msgs:/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/unique_identifier_msgs/msg/UUID.idl"
+  ],
+  "target_dependencies": [
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/lib/rosidl_typesupport_cpp/rosidl_typesupport_cpp",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/lib/python3.9/site-packages/rosidl_typesupport_cpp/__init__.py",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/rosidl_typesupport_cpp/resource/action__type_support.cpp.em",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/rosidl_typesupport_cpp/resource/idl__type_support.cpp.em",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/rosidl_typesupport_cpp/resource/msg__type_support.cpp.em",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/rosidl_typesupport_cpp/resource/srv__type_support.cpp.em",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/action_msgs/rosidl_adapter/action_msgs/msg/GoalInfo.idl",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/action_msgs/rosidl_adapter/action_msgs/msg/GoalStatus.idl",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/action_msgs/rosidl_adapter/action_msgs/msg/GoalStatusArray.idl",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/build/action_msgs/rosidl_adapter/action_msgs/srv/CancelGoal.idl",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/install/share/builtin_interfaces/msg/Duration.idl",
+    "/home/tf/matlab_ros2_msgs/matlab_msg_gen/glnxa64/install/share/builtin_interfaces/msg/Time.idl",
+    "/usr/local/MATLAB/R2024b/sys/ros2/glnxa64/ros2/share/unique_identifier_msgs/msg/UUID.idl"
+  ]
+}

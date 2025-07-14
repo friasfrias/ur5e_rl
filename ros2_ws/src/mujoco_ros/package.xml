@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>mujoco_ros</name>
+  <version>0.1.0</version>
+  <description>
+    Bridge between ROS 2 and MuJoCo environment with RealSense overlay.
+  </description>
+  <maintainer email="tf@uc.pt">Tomás Ferreira</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- build tool -->
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <!-- runtime dependencies -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+
+  <!-- test dependencies -->
+  <test_depend>pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
