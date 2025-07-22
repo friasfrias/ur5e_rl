@@ -1,0 +1,24 @@
+% carrega o robô
+ur5e = loadrobot('universalUR5e','DataFormat','column');
+
+fprintf('   link | alpha (rad) |     a (m)    |     d (m)    | theta_offset (rad)\n');
+fprintf(' -------+-------------+--------------+--------------+------------------\n');
+
+% itera nos corpos que têm juntas revolutas
+for i = 2:numel(ur5e.Bodies)      % body(1) é base fixa
+    body  = ur5e.Bodies{i};
+    joint = body.Joint;
+    if strcmp(joint.Type,'revolute')
+        % JointToParentTransform é o MDH A_i (4×4) que leva do frame i-1 até ao frame depois do desloc d e rotação theta=0
+        A = joint.JointToParentTransform;
+        % extrai os parâmetros MDH:
+        alpha = atan2(A(3,2), A(3,3));        % rotação em torno de x
+        a     = A(1,4);                       % translação ao longo de x
+        d     = A(3,4);                       % translação ao longo de z
+        % o offset de theta é dado pelo ângulo restante de rotação em torno de z
+        theta_offset = atan2(A(2,1), A(1,1));
+
+        fprintf('  %6s | %10.4f | %12.4f | %12.4f | %16.4f\n', ...
+                joint.JointName, alpha, a, d, theta_offset);
+    end
+end
