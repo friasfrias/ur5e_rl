@@ -16,6 +16,7 @@ from sensor_msgs.msg import JointState
 from ament_index_python.packages import get_package_share_directory
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
+from vision import detect_pattern
 
 class MujocoSimulator(Node):
     def __init__(self):
@@ -46,6 +47,8 @@ class MujocoSimulator(Node):
         glfw.make_context_current(self.window)
 
         self.reset = False
+        self.last_reset = time.time()
+
         glfw.set_key_callback(self.window, self._key_callback)
         
 
@@ -249,6 +252,14 @@ class MujocoSimulator(Node):
         while not glfw.window_should_close(self.window) and rclpy.ok():
             rclpy.spin_once(self, timeout_sec=0.0)
             self.step()
+            
+            # Verificar se o padrão ainda é detetado
+            if not detect_pattern():
+                if time.time() - self.last_reset > 1.0:  # evitar resets sucessivos
+                    print("[INFO] Padrão não detetado. Reset automático.")
+                    self.reset_simulation()
+                    self.last_reset = time.time()
+
             time.sleep(1/240.0)
         glfw.terminate()
         print("[INFO] Simulação terminada.")

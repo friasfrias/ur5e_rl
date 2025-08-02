@@ -21,16 +21,24 @@ setup(
     version='0.0.0',
     packages=find_packages(),
     data_files=[
-        ('share/' + package_name + '/launch', ['launch/ur5e_env.launch.py','launch/ur5e_test.launch.py','launch/ur5e_pid.launch.py']),
+        ('share/' + package_name + '/launch', ['launch/ur5e_env.launch.py','launch/ur5e_rl.launch.py','launch/ur5e_pid.launch.py']),
         ('share/' + package_name + '/config', ['config/ur5e_controllers.yaml','config/calib.npz']),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/ur5e_env_description/nodes', ['ur5e_env_description/nodes/pid_control_matlab.sh'])
-    ] + model_files + urdf_files,
+    ] + model_files + urdf_files + [
+        ('share/' + package_name + '/matlab', [
+           'matlab/kinematics_matlab.sh',
+           'matlab/pid_control_matlab.sh',
+           'matlab/pidControl2.m',
+           'matlab/pidControl2xyz.m',
+           'matlab/pidControlNode.m',
+           'matlab/ur5e_publish_joints.m',
+       ]),
+   ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='Tomás',
     maintainer_email='tomas@example.com',
-    description='Simulação e controlo PID do UR5e com visão',
+    description='Simulação RL e controlo PID do UR5e com visão',
     license='MIT',
     entry_points={
         'console_scripts': [

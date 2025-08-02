@@ -9,6 +9,7 @@ from std_msgs.msg import Float32MultiArray
 from cv_bridge import CvBridge, CvBridgeError
 from message_filters import Subscriber, ApproximateTimeSynchronizer
 from std_srvs.srv import Trigger
+from std_msgs.msg import Bool
 
 def build_objp(nx, ny, square_size):
     """
@@ -44,6 +45,15 @@ def calibrate_camera(rgb, objp, nx, ny, K, dist):
     err = cv2.norm(corners2, proj_pts, cv2.NORM_L2) / len(proj_pts)
     return {'rvec': rvec, 'tvec': tvec, 'T': T, 'error': err}
 
+def detect_pattern(rgb, nx, ny):
+    """
+    Verifica apenas se um padrão de nx×ny é encontrado na imagem.
+    Retorna True se encontrado, False caso contrário.
+    """
+    gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
+    # Usa a versão SB (mais robusta) do findChessboardCorners
+    ret, _ = cv2.findChessboardCornersSB(gray, (nx, ny), None)
+    return bool(ret)
 
 def extract_angles(rvec):
     """
@@ -95,6 +105,8 @@ class AngleEstimatorNode(Node):
             'displacements',
             10
         )
+
+        self.pattern_pub = self.create_publisher(Bool, 'pattern_detected', 10)
 
         # Subscrever e sincronizar RGB+Depth
         rgb_sub = Subscriber(self, Image, '/camera/color/image_raw')
@@ -168,6 +180,9 @@ class AngleEstimatorNode(Node):
         # Publicar deslocamentos
         disp_msg = Float32MultiArray(data=[dx_off, dz_off])
         self.disp_pub.publish(disp_msg)
+
+        ok = detect_pattern(rgb, self.nx, self.ny)
+        self.pattern_pub.publish(Bool(data=ok))
 
 def main():
     rclpy.init()

@@ -1,1 +1,0 @@
-/home/tf/ros2_ws/build/ur5e_env_description/ur5e_env_description/nodes/pid_control_matlab.sh

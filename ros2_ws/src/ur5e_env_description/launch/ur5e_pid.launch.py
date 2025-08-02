@@ -9,7 +9,7 @@ def generate_launch_description():
     pkg_path = get_package_share_directory("ur5e_env_description")
     mjcf_path = os.path.join(pkg_path, "models", "ur5e_env.xml")
     urdf_path = os.path.join(pkg_path, "urdf", "ur5e.urdf.xacro")
-    script_dir = os.path.join(pkg_path, "ur5e_env_description", "nodes")
+    matlab_dir = os.path.join(pkg_path, "matlab")
     controllers_yaml = os.path.join(pkg_path, "config", "ur5e_controllers.yaml")
 
     # Processar o XACRO → URDF
@@ -20,7 +20,7 @@ def generate_launch_description():
         "force_abs_paths": "false"
     }
     
-    mappings1 = { **base_mappings, "with_ros2_control": "false" }
+    mappings1 = { **base_mappings, "with_ros2_control": "true" }
     robot_desc1 = xacro.process_file(urdf_path, mappings=mappings1).toxml()
     rsp = Node(
         package="robot_state_publisher",
@@ -37,16 +37,11 @@ def generate_launch_description():
         executable="mujoco_ros2_control",
         parameters=[
             controllers_yaml,
-            {"mujoco_model_path": mjcf_path, "gui": False},
+            {"mujoco_model_path": mjcf_path, "gui": True},
             {"robot_description": robot_desc2},
         ],
-        remappings=[
-        # remapeia o tópico interno de joint_states para o global
-        ("/mujoco_plugin/joint_states", "/joint_states")
-    ],
-    output="screen"
+        output="screen"
     )
-
 
     from launch.actions import ExecuteProcess
 
@@ -55,7 +50,7 @@ def generate_launch_description():
       "ros2", "run", "controller_manager", "spawner",
       "joint_state_broadcaster",
       "--controller-manager", "/controller_manager",
-      "--param-file", controllers_yaml,
+      "--param-file", controllers_yaml
     ],
     output="screen",
     )
@@ -70,6 +65,12 @@ def generate_launch_description():
     output="screen",
     )
     
+    pid_matlab = ExecuteProcess(
+        cmd=[os.path.join(matlab_dir, "pid_control_matlab.sh")],
+        output="screen",
+        shell=True
+    )
+
     main_node = Node(
         package="ur5e_env_description",
         executable="main",
@@ -81,20 +82,10 @@ def generate_launch_description():
         package="ur5e_env_description",
         executable="vision",
         name="visao_pid",
-        parameters=[{
-            'calib_file':   os.path.join(pkg_path, 'config','calib.npz'),
-            'nx':            5,
-            'ny':            21,
-            'square_size':   0.007,
-            'width':         0.042
-        }],
-        output="screen"
-    )
-
-    pid_matlab = ExecuteProcess(
-        cmd=[os.path.join(script_dir, "pid_control_matlab.sh")],
         output="screen",
-        shell=True
+        parameters=[
+           {"calib_file": os.path.join(pkg_path, "config", "calib.npz")}]
+
     )
 
-    return LaunchDescription([rsp, mujoco, spawner_jsb, spawner_arm, pid_matlab, main_node, vision_node])
+    return LaunchDescription([rsp, mujoco, spawner_jsb, spawner_arm, main_node, vision_node, pid_matlab])

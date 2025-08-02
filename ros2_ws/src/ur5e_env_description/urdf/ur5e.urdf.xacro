@@ -6,7 +6,7 @@
   <xacro:arg name="ur_type"         default="ur5e"/>
   <xacro:arg name="tf_prefix"       default=""/>
   <xacro:arg name="force_abs_paths" default="false"/>
-  <xacro:arg name="with_ros2_control" default="false"/>
+  <xacro:arg name="with_ros2_control" default="true"/>
 
   <!-- só incluo o macro cinemático do UR, sem includes de ros2_control -->
   <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>

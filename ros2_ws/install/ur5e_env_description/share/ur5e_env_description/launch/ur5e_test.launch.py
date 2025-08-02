@@ -1,1 +1,0 @@
-/home/tf/ros2_ws/build/ur5e_env_description/launch/ur5e_test.launch.py

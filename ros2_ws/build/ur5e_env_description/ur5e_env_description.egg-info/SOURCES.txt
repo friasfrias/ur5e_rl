@@ -5,7 +5,13 @@ config/calib.npz
 config/ur5e_controllers.yaml
 launch/ur5e_env.launch.py
 launch/ur5e_pid.launch.py
-launch/ur5e_test.launch.py
+launch/ur5e_rl.launch.py
+matlab/kinematics_matlab.sh
+matlab/pidControl2.m
+matlab/pidControl2xyz.m
+matlab/pidControlNode.m
+matlab/pid_control_matlab.sh
+matlab/ur5e_publish_joints.m
 models/calib.mtl
 models/calib.obj
 models/checkerboard.png
@@ -62,8 +68,8 @@ ur5e_env_description.egg-info/requires.txt
 ur5e_env_description.egg-info/top_level.txt
 ur5e_env_description.egg-info/zip-safe
 ur5e_env_description/nodes/__init__.py
+ur5e_env_description/nodes/kinematics.py
 ur5e_env_description/nodes/main_cam.py
-ur5e_env_description/nodes/pid_control_matlab.sh
 ur5e_env_description/nodes/view_model.py
 ur5e_env_description/nodes/vision.py
 urdf/ur5e.urdf.xacro
