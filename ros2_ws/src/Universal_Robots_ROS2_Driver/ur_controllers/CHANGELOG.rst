@@ -2,6 +2,23 @@
 Changelog for package ur_controllers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.8.1 (2025-06-11)
+------------------
+* Use std_atomic<bool> in SJTC (backport of `#1385 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1385>`_) (`#1386 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1386>`_)
+* [force mode controller] Fix the task frame orientation (backport `#1379 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1379>`_) (`#1380 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1380>`_)
+* Contributors: mergify[bot]
+
+2.8.0 (2025-05-20)
+------------------
+* Added controller to enable and disable tool contact (backport of `#940 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/940>`_) (`#1337 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1337>`_)
+* Contributors: mergify[bot]
+
+2.7.0 (2025-04-10)
+------------------
+* Start executing passthrough trajectories earlier than all points are transferred. (backport of `#1313 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1313>`_) (`#1335 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1335>`_)
+* Fix passthrough controller to not read non-existing state_interfaces (`#1314 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1314>`_) (`#1316 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1316>`_)
+* Contributors: mergify[bot]
+
 2.6.0 (2025-03-17)
 ------------------
 * ur_controllers: doc -- Fix link to index page of driver (backport of `#1284 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1284>`_) (`#1285 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1285>`_)

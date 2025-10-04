@@ -1,0 +1,1 @@
+/home/tomas/ur5e_rl/ros2_ws/src/Universal_Robots_ROS2_Driver/ur_bringup/launch/ur10.launch.py

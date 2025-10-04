@@ -43,7 +43,8 @@ setup(
     entry_points={
         'console_scripts': [
             'main = ur5e_env_description.nodes.main_cam:main',
-            'vision = ur5e_env_description.nodes.vision:main',
+            'vision_rl = ur5e_env_description.nodes.vision_rl:main',
+            'vision_pid = ur5e_env_description.nodes.vision_pid:main',
             'test = ur5e_env_description.test_pid:main',
         ],
     },

@@ -1,0 +1,1 @@
+/home/tomas/ur5e_rl/ros2_ws/src/mujoco_ros/assets/mujoco_menagerie/google_robot/README.md

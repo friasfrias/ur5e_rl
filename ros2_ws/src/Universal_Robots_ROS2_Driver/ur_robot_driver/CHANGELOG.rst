@@ -1,3 +1,26 @@
+2.8.1 (2025-06-11)
+------------------
+* [force mode controller] Fix the task frame orientation (backport `#1379 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1379>`_) (`#1380 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1380>`_)
+* Update feature list (backport of `#1372 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1372>`_) (`#1374 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1374>`_)
+* Contributors: mergify[bot]
+
+2.8.0 (2025-05-20)
+------------------
+* [CI] Check links using lychee instead of a custom script (backport `#1355 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1355>`_) (`#1361 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1361>`_)
+* Add support for launching a UR15 robot (`#1359 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1359>`_)
+* tool_contact_test: Check result status directly (backport of `#1345 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1345>`_) (`#1353 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1353>`_)
+* Added controller to enable and disable tool contact (backport of `#940 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/940>`_) (`#1337 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1337>`_)
+* Contributors: Felix Exner, mergify[bot]
+
+2.7.0 (2025-04-10)
+------------------
+* Start executing passthrough trajectories earlier than all points are transferred. (backport of `#1313 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1313>`_) (`#1335 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1335>`_)
+* Support PolyScopeX robots (backport of `#1318 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1318>`_) (`#1333 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1333>`_)
+* Add support for UR7e and UR12e (`#1332 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1332>`_)
+* Use UrDriverConfig struct to initialize UrDriver (backport of `#1328 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1328>`_) (`#1330 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1330>`_)
+* Fix passthrough controller to not read non-existing state_interfaces (`#1314 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1314>`_) (`#1316 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1316>`_)
+* Contributors: mergify[bot]
+
 2.6.0 (2025-03-17)
 ------------------
 * Update transformForceTorque to handle whether it is a cb3 or an e-Series robot (backport of `#1287 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1287>`_) (`#1299 <https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/issues/1299>`_)

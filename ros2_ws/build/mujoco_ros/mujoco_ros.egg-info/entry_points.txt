@@ -1,0 +1,5 @@
+[console_scripts]
+home_position = mujoco_ros.home_position:main
+mujoco_rl = mujoco_ros.mujoco_rl:main
+wind_cam = mujoco_ros.wind_cam:main
+

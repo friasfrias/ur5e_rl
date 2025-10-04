@@ -1,0 +1,1 @@
+/home/tomas/ur5e_rl/ros2_ws/src/mujoco_ros/assets/mujoco_menagerie/anybotics_anymal_b/README.md

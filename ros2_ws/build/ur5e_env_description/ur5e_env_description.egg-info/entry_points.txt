@@ -1,5 +1,6 @@
 [console_scripts]
 main = ur5e_env_description.nodes.main_cam:main
 test = ur5e_env_description.test_pid:main
-vision = ur5e_env_description.nodes.vision:main
+vision_pid = ur5e_env_description.nodes.vision_pid:main
+vision_rl = ur5e_env_description.nodes.vision_rl:main
 

@@ -16,7 +16,6 @@ from sensor_msgs.msg import JointState
 from ament_index_python.packages import get_package_share_directory
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
-from vision import detect_pattern
 
 class MujocoSimulator(Node):
     def __init__(self):
@@ -25,7 +24,6 @@ class MujocoSimulator(Node):
         pkg = get_package_share_directory('ur5e_env_description')
         xml_path = os.path.join(pkg, 'models', 'ur5e_env.xml')
         self.model = mujoco.MjModel.from_xml_path(xml_path)
-        print("[DEBUG] model.nu (nº actuators):", self.model.nu)
 
         self.data = mujoco.MjData(self.model)
         self.actuated_dofs = self.model.nu
@@ -118,24 +116,12 @@ class MujocoSimulator(Node):
                 if idx < self.actuated_dofs:
                     self.data.ctrl[idx] = pos
 
-        self.get_logger().info(f"=== Trajectory received ===")
-        self.get_logger().info(f"  joints: {msg.joint_names}")
-        self.get_logger().info(f"  #points: {len(msg.points)}")
-        for i, pt in enumerate(msg.points):
-            self.get_logger().info(
-                f"  pt[{i}]: pos={pt.positions}  vel={pt.velocities}  tfs=({pt.time_from_start.sec},"
-                f"{pt.time_from_start.nanosec})"
-            )
-
     def reset_simulation(self):
         self.ignore_joint_updates = True
         self.data.qpos[:] = self.qpos_home.copy()
         self.data.qvel[:] = 0.0
         self.data.ctrl[:6] = self.qpos_home[:6]
         mujoco.mj_forward(self.model, self.data)
-        print("[INFO] Reset aplicado. A ignorar comandos por 0.5s...")
-        print("[DEBUG] qpos:", self.data.qpos[:])
-        print("[DEBUG] ctrl:", self.data.ctrl[:])
 
     def cb_reset_service(self, request, response):
         self.reset_simulation()
@@ -216,6 +202,8 @@ class MujocoSimulator(Node):
         rgb_arr   = np.flipud(rgb_arr)
         depth_arr = np.flipud(depth_arr)
 
+        self.last_rgb = rgb_arr.copy()
+
         # converte para ROS Image msg e publica
         stamp = self.get_clock().now().to_msg()
         rgb_msg   = self.bridge.cv2_to_imgmsg(rgb_arr,   encoding='rgb8')
@@ -252,14 +240,6 @@ class MujocoSimulator(Node):
         while not glfw.window_should_close(self.window) and rclpy.ok():
             rclpy.spin_once(self, timeout_sec=0.0)
             self.step()
-            
-            # Verificar se o padrão ainda é detetado
-            if not detect_pattern():
-                if time.time() - self.last_reset > 1.0:  # evitar resets sucessivos
-                    print("[INFO] Padrão não detetado. Reset automático.")
-                    self.reset_simulation()
-                    self.last_reset = time.time()
-
             time.sleep(1/240.0)
         glfw.terminate()
         print("[INFO] Simulação terminada.")

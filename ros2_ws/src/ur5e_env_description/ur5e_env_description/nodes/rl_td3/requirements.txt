@@ -1,0 +1,19 @@
+gymnasium
+matplotlib==3.8.2
+tensorboard==2.15.1
+numpy==1.26.4
+
+# Compatível com mujoco 3.3.0
+mujoco==3.3.0
+
+# PyTorch com CUDA 11.8 (usa --extra-index-url)
+--extra-index-url https://download.pytorch.org/whl/cu118
+torch==2.2.0
+torchvision
+torchaudio
+
+# OpenCV (usado em vision, main_cam, etc.)
+opencv-python==4.8.0.76
+
+# GLFW (usado pelo mujoco para rendering)
+glfw==2.6.2

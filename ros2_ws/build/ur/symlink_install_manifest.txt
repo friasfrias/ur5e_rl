@@ -1,0 +1,15 @@
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ament_index/resource_index/package_run_dependencies/ur
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ament_index/resource_index/parent_prefix_path/ur
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ur/environment/ament_prefix_path.sh
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ur/environment/ament_prefix_path.dsv
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ur/environment/path.sh
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ur/environment/path.dsv
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ur/local_setup.bash
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ur/local_setup.sh
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ur/local_setup.zsh
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ur/local_setup.dsv
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ur/package.dsv
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ament_index/resource_index/packages/ur
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ur/cmake/urConfig.cmake
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ur/cmake/urConfig-version.cmake
+/home/tomas/ur5e_rl/ros2_ws/install/ur/share/ur/package.xml

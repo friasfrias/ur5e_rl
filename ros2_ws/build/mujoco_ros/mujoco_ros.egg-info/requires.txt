@@ -1,0 +1,5 @@
+glfw
+mujoco
+numpy
+opencv-python
+setuptools

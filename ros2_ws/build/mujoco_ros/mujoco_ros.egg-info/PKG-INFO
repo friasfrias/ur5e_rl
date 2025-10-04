@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: mujoco-ros
+Version: 0.1.0
+Summary: Bridge between ROS 2 and MuJoCo environment with RealSense overlay
+Home-page: UNKNOWN
+Maintainer: Tomás Ferreira
+Maintainer-email: tf@uc.pt
+License: Apache-2.0
+Platform: UNKNOWN
+
+UNKNOWN
+

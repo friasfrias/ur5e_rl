@@ -2,7 +2,7 @@ import os
 import time
 import numpy as np
 from agent import Agent
-from env import BalanceEnv
+from env2 import BalanceEnv
 from torch.utils.tensorboard import SummaryWriter
 import datetime
 
@@ -27,23 +27,44 @@ if __name__ == "__main__":
 
     # === Evaluation parameters ===
     n_eval_episodes = 20
-    max_steps = 1000
+    max_steps = 5000
+    rms_windows = [1, 2, 5, 10, 20, 50]   # janelas em segundos
+
+    def rms_until(values, times, limit):
+        vals = [v for v, t in zip(values, times) if t < limit]
+        if not vals:
+            return np.nan
+        return float(np.sqrt(np.mean(np.square(vals))))
 
     for ep in range(n_eval_episodes):
-        obs, info = env.reset()
+        obs, _ = env.reset()
         done = False
-        score = 0
+        score = 0.0
         step_count = 0
         start_time = time.time()
 
+        # logs para RMS
+        alpha_log, beta_log, t_log = [], [], []
+
         while not done and step_count < max_steps:
-            # Use deterministic action from the actor (no noise)
-            action = agent.actor.forward(agent.to_tensor(obs)).cpu().detach().numpy()
+            # Ação determinística, igual ao treino (sem ruído)
+            action = agent.choose_action(obs, validation=True)
             obs, reward, terminated, truncated, info = env.step(action)
             done = terminated or truncated
 
             score += reward
             step_count += 1
+
+            # === Ângulos em GRAUS a partir do obs normalizado (±1 -> ±90°) ===
+            try:
+                alpha_deg = float(obs[0]) * env.obs_clip_deg
+                beta_deg  = float(obs[1]) * env.obs_clip_deg
+                alpha_log.append(alpha_deg)
+                beta_log.append(beta_deg)
+                t_log.append(time.time() - start_time)
+            except Exception:
+                # ignora se obs vier corrompido por algum motivo raro
+                pass
 
         duration = time.time() - start_time
 
@@ -53,6 +74,17 @@ if __name__ == "__main__":
         writer.add_scalar("Test/Episode Duration", duration, ep)
         writer.add_scalar("Test/Avg Reward per Step", score / max(1, step_count), ep)
 
-        print(f"[Test] Ep {ep}: Score={score:.2f}, Steps={step_count}, Duration={duration:.2f}s")
-    
+        # === RMS dos ângulos ===
+        if alpha_log:
+            rms_alpha = [rms_until(alpha_log, t_log, w) for w in rms_windows]
+            rms_beta  = [rms_until(beta_log,  t_log, w) for w in rms_windows]
+        else:
+            rms_alpha = [np.nan] * len(rms_windows)
+            rms_beta  = [np.nan] * len(rms_windows)
+
+        print(f"[Test] Ep {ep+1}: Score={score:.2f}, Steps={step_count}, Duration={duration:.2f}s")
+        fmt = lambda arr: "   ".join("nan" if not np.isfinite(x) else f"{x:.3f}" for x in arr)
+        print(f"RMS alpha (deg):    {fmt(rms_alpha)}")
+        print(f"RMS beta  (deg):    {fmt(rms_beta)}\n")
+
     writer.close()

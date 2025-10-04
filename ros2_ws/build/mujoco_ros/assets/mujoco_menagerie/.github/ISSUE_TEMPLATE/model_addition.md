@@ -1,0 +1,1 @@
+/home/tomas/ur5e_rl/ros2_ws/src/mujoco_ros/assets/mujoco_menagerie/.github/ISSUE_TEMPLATE/model_addition.md

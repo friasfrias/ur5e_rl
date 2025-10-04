@@ -7,6 +7,7 @@ from torch.utils.tensorboard import SummaryWriter
 import time
 import os
 import datetime
+from env import BalanceEnv
 
 
 from model import DQNNetwork, soft_update
@@ -41,7 +42,7 @@ class DQNAgent:
 
         # Otimizador e buffer de replay
         self.optimizer = optim.Adam(self.principal_net.parameters(), lr=lr)
-        self.memory = ReplayBuffer(capacity=buffer_capacity, input_shape=n_observations, device=self.device)
+        self.memory = ReplayBuffer(max_size=buffer_capacity, input_shape=(n_observations,), device=self.device)
 
     def choose_action(self, state):
         """
@@ -72,7 +73,10 @@ class DQNAgent:
 
     def train(self, episodes, max_episode_steps, summary_writer_suffix):
 
-        summary_writer_name = f'runs/{datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}_{summary_writer_suffix}'
+        # Gera um nome do tipo: runs/dqn_250808_1542_lr1e-4_bs64
+        date = datetime.datetime.now().strftime("%y%m%d_%H%M")
+        summary_writer_name = f"runs/DQN_{date}_{summary_writer_suffix}"
+
         writer = SummaryWriter(summary_writer_name)
 
         if not os.path.exists('models'):
@@ -82,23 +86,26 @@ class DQNAgent:
 
         for episode in range(episodes):
 
-            done = False
             episode_reward = 0
-            state, _ = self.env.reset()
-
             episode_steps = 0
             episode_start_time = time.time()
 
+            state, _ = self.env.reset()
+            done = False
+
             while not done and episode_steps < max_episode_steps:
                 action = self.choose_action(state)
-                next_state, reward, done, info = self.env.step(action)
+                next_state, reward, terminated, truncated, info = self.env.step(action)
+
+                done = bool(terminated) or bool(truncated)
+
 
                 if done:
                     # regista a transição final, se quiseres
-                    self.memory.store_transition(state, action, reward, done, next_state)
+                    self.memory.store_transition(state, action, reward, next_state, done)
                     break
 
-                self.memory.store_transition(state, action, reward, done, next_state)
+                self.memory.store_transition(state, action, reward, next_state, done)
 
                 state = next_state
                 episode_reward += reward
@@ -114,14 +121,17 @@ class DQNAgent:
                     dones = dones.unsqueeze(1).float()
 
                     q_values = self.principal_net(states)
-                    actions = actions.unsqueeze(1).long()
-                    qsa_batch = q_values.gather(1, actions)
+                    actions = actions.long()
+                    qsa_batch = q_values.gather(1, actions) 
+
+
 
                     next_actions = torch.argmax(self.principal_net(next_states), dim=1, keepdim=True)
 
                     next_q_values = self.target_net(next_states).gather(1, next_actions)
 
-                    target_b = rewards.unsqueeze(1) + (1 - dones) * self.gamma * next_q_values
+                    target_b = rewards + (1 - dones) * self.gamma * next_q_values
+
 
                     loss = F.mse_loss(qsa_batch, target_b.detach())
 
@@ -136,12 +146,11 @@ class DQNAgent:
             
             self.principal_net.save_the_model()
 
+            episode_time = time.time() - episode_start_time
+
             writer.add_scalar('Score', episode_reward, episode)
             writer.add_scalar('Epsilon', self.epsilon, episode)
             writer.add_scalar("Time/Episode", episode_time, episode)
-
-
-            episode_time = time.time() - episode_start_time
 
             print(f"Completed episode {episode} with score {episode_reward}")
             print(f"Episode Time: {episode_time:1f} seconds")
@@ -171,7 +180,9 @@ class DQNAgent:
             q_values  = self.principal_net(state_v)
             action  = torch.argmax(q_values, dim=1).item()
 
-            next_state, reward, done, info = self.env.step(action)
+            next_state, reward, terminated, truncated, info = self.env.step(action)
+            done = bool(terminated) or bool(truncated)
+
 
             if(done):
                 break

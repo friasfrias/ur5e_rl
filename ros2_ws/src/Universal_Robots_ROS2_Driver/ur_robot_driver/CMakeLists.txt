@@ -9,9 +9,12 @@ option(
   OFF
 )
 
-add_compile_options(-Wall)
-add_compile_options(-Wextra)
-add_compile_options(-Wno-unused-parameter)
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall)
+  add_compile_options(-Wextra)
+  add_compile_options(-Wno-unused-parameter)
+endif()
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 if(NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
   message("${PROJECT_NAME}: You did not request a specific build type: selecting 'RelWithDebInfo'.")
@@ -113,6 +116,7 @@ ament_target_dependencies(controller_stopper_node ${${PROJECT_NAME}_EXPORTED_TAR
 add_executable(robot_state_helper
   src/robot_state_helper.cpp
   src/robot_state_helper_node.cpp
+  src/urcl_log_handler.cpp
 )
 target_link_libraries(robot_state_helper ur_client_library::urcl)
 ament_target_dependencies(robot_state_helper ${${PROJECT_NAME}_EXPORTED_TARGETS} ${THIS_PACKAGE_INCLUDE_DEPENDS})
@@ -220,6 +224,10 @@ if(BUILD_TESTING)
     add_launch_test(test/urscript_interface.py
       TIMEOUT
         500
+    )
+    add_launch_test(test/integration_test_tool_contact.py
+      TIMEOUT
+        800
     )
   endif()
 endif()

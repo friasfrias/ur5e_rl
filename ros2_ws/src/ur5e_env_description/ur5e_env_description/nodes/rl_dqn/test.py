@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 import torch
 from torch.utils.tensorboard import SummaryWriter
-from env import BalanceEnvDiscrete
+from env import BalanceEnv
 from agent import DQNAgent
 
 episodes = 20000
@@ -21,16 +21,7 @@ tau = 0.005
 
 
 # Criação do ambiente
-env = BalanceEnvDiscrete(
-    sim_script_path="src/ur5e_env_description/ur5e_env_description/nodes/main_cam.py",
-    survival_rate = 1,
-    k=10,
-    delta=0.01,
-    reward_limit=1,
-    nx=5,
-    ny=21,
-    launch_gui=True
-)
+env = BalanceEnv()
 
 agent = DQNAgent(env, n_observations=env.observation_space.shape[0], n_actions=env.action_space.n, hidden_layer=hidden_layer,
               lr=learning_rate, warmup=warmup, buffer_capacity= buffer_capacity, batch_size=batch_size, epsilon_start=epsilon_start,
